@@ -1,4 +1,5 @@
 const { Movie, Character } = require('../models/index')
+const { Op } = require('sequelize');
 
 const getFilters = ({ name, age, weight }) => {
   const filter = {}

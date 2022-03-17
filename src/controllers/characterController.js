@@ -1,5 +1,5 @@
 const { Character, Movie } = require('../models/index')
-const { Op } = require('Sequelize');
+const { Op } = require('sequelize');
 
 const getFilters = ({ name, age, weight }) => {
   const filter = {}
@@ -39,7 +39,7 @@ const view = async (req, res) => {
       ) 
     )
   }
-  
+
   characters = characters.map(({id, image, name}) => ({id, image, name}))
 
   return res.json(characters)
