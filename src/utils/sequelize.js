@@ -1,12 +1,9 @@
 const { Sequelize } = require('sequelize');
 const config = require('./config')
 
-const sequelize = new Sequelize(config.DATABASE_URL, {
+const dBUrl = config.DATABASE_URL + (config.NODE_ENV === 'production' ? 'sslmode=no-verify' : '')
+const sequelize = new Sequelize(dBUrl, {
   logging: false,
-  ssl: {
-    require: config.NODE_ENV === 'production',
-    rejectUnauthorized: false
-  }
 })
 
 sequelize.authenticate()
