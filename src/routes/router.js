@@ -8,7 +8,7 @@ const middleware = require('../utils/middleware')
 router.use('/auth', authRouter)
 router.use('/characters', apiRouter(characterController))
 router.use('/movies', apiRouter(movieController))
-app.use(middleware.unknownEndpoint)
-app.use(middleware.errorHandler)
+router.use(middleware.unknownEndpoint)
+router.use(middleware.errorHandler)
 
 module.exports = router
