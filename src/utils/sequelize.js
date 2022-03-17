@@ -1,8 +1,13 @@
 const { Sequelize } = require('sequelize');
 const config = require('./config')
 
-const dBUrl = config.DATABASE_URL + (config.NODE_ENV === 'production' ? '?sslmode=require' : '')
-const sequelize = new Sequelize(dBUrl, {logging: false})
+const sequelize = new Sequelize(config.DATABASE_URL, {
+  logging: false,
+  ssl: {
+    require: config.NODE_ENV === 'production',
+    rejectUnauthorized: false
+  }
+})
 
 sequelize.authenticate()
   .then( _ => console.log('Connection to DB has been established successfully.'))
