@@ -1,4 +1,4 @@
-const apiRouter = (controller) => {
+const crudRouter = (controller) => {
   const router = require('express').Router()
 
   router.get('/(:id)?', controller.view)
@@ -9,4 +9,4 @@ const apiRouter = (controller) => {
   return router
 } 
 
-module.exports = apiRouter
+module.exports = crudRouter

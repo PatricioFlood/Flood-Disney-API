@@ -1,17 +1,5 @@
 const { Character, Movie } = require('../models/index')
-const { Op } = require('sequelize');
-
-const getFilters = ({ name, age, weight }) => {
-  const filter = {}
-
-  name ? filter.name = {
-    [Op.like]: name
-  } : null
-  age ? filter.age = age : null
-  weight ? filter.weight = weight : null
-
-  return filter
-}
+const { Sequelize } = require('sequelize');
 
 const view = async (req, res) => {
   const id = req.params.id
@@ -71,11 +59,25 @@ const remove = async (req, res) => {
   const id = req.params.id
   const character = await Character.findByPk(id)
   if(character){
-    console.log(character.toJSON())
     await character.destroy()
-    return res.status(204).end()
   }
   return res.status(404).end()
+}
+
+const getFilters = ({ name, age, weight }) => {
+  const filter = {}
+
+  name 
+    ? filter.name = Sequelize.where(
+      Sequelize.fn('LOWER', Sequelize.col('name')), 
+      'LIKE', 
+      `%${name.toLowerCase()}%`
+    )
+    : null
+  age ? filter.age = age : null
+  weight ? filter.weight = weight : null
+
+  return filter
 }
 
 module.exports = {

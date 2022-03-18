@@ -1,13 +1,19 @@
 const router = require('express').Router()
-const apiRouter = require('./apiRouter')
 const authRouter = require('./authRouter')
-const movieController = require('../controllers/movieController')
-const characterController = require('../controllers/characterController')
+const movieRouter = require('./movieRouter')
+const characterRouter = require('./characterRouter')
+const genreRouter = require('./genreRouter')
 const middleware = require('../utils/middleware')
+require('express-async-errors')
 
 router.use('/auth', authRouter)
-router.use('/characters', apiRouter(characterController))
-router.use('/movies', apiRouter(movieController))
+
+router.use(middleware.authentication)
+
+router.use('/characters', characterRouter)
+router.use('/movies', movieRouter)
+router.use('/genres', genreRouter)
+
 router.use(middleware.unknownEndpoint)
 router.use(middleware.errorHandler)
 
