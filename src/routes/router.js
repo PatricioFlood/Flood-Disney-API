@@ -4,7 +4,6 @@ const movieRouter = require('./movieRouter')
 const characterRouter = require('./characterRouter')
 const genreRouter = require('./genreRouter')
 const middleware = require('../utils/middleware')
-require('express-async-errors')
 
 router.use('/auth', authRouter)
 
