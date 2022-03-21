@@ -196,7 +196,7 @@ module.exports = characterRouter
  *            application/json:
  *              schema:
  *                type: object
- *                $ref: '#components/schemas/Character'
+ *                $ref: '#components/schemas/ShortCharacter'
  *        400:
  *          $ref: '#components/responses/BadRequest'
  *        401:

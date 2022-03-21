@@ -180,7 +180,7 @@ module.exports = genreRouter
  *            application/json:
  *              schema:
  *                type: object
- *                $ref: '#components/schemas/Genre'
+ *                $ref: '#components/schemas/ShortGenre'
  *        400:
  *          $ref: '#components/responses/BadRequest'
  *        401:

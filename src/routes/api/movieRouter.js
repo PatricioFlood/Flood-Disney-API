@@ -200,7 +200,7 @@ module.exports = movieRouter
  *            application/json:
  *              schema:
  *                type: object
- *                $ref: '#components/schemas/Movie'
+ *                $ref: '#components/schemas/ShortMovie'
  *        400:
  *          $ref: '#components/responses/BadRequest'
  *        401:
