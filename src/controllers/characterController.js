@@ -6,7 +6,13 @@ const view = async (req, res) => {
   const id = req.params.id
   if(id){
     const character = await Character
-      .findByPk(id, { include: Movie })
+      .findByPk(id, { 
+        include: { 
+          model: Movie, 
+          through: { attributes: [] },
+          attributes: ['id', 'title', 'image', 'creationDate'],
+        } 
+      })
     if(character)
       return res.json(character)
     return res.status(404).end()
@@ -16,7 +22,7 @@ const view = async (req, res) => {
 
   let characters = await Character
     .findAll({
-      include: { model: Movie },
+      include: Movie,
       attributes: ['id', 'image', 'name'],
       where: filter
     })

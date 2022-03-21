@@ -6,7 +6,12 @@ const view = async (req, res) => {
 
   if(id){
     const genre = await Genre
-      .findByPk(id, { include: Movie })
+      .findByPk(id, { 
+        include: { 
+          model: Movie,
+          attributes: ['id', 'title', 'image', 'creationDate'],
+        } 
+      })
     if(genre)
       return res.json(genre)
     return res.status(404).end()

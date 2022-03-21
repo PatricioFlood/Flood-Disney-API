@@ -1,4 +1,4 @@
-const { Movie, Character } = require('../models/index')
+const { Movie, Character, Genre } = require('../models/index')
 const { Sequelize } = require('sequelize');
 const uploadImageController = require('./uploadImageController')
 
@@ -6,10 +6,21 @@ const view = async (req, res) => {
   const id = req.params.id
   if(id){
     const movie = await Movie
-      .findByPk(id, { include: Character})
-    if(movie){
+    .findByPk(id, { 
+      include: [
+        Genre,
+        { 
+          model: Character, 
+          through: { attributes: [] },
+          attributes: ['id', 'name', 'image'],
+        }
+      ], 
+      attributes: {exclude: 'genreId'}
+    })
+
+    if(movie)
       return res.json(movie)
-    }
+
     return res.status(404).end()
   } 
 
