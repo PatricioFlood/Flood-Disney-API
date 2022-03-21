@@ -1,7 +1,6 @@
 const logger = require('./logger')
 const jwt = require('jsonwebtoken')
 
-
 const authentication = (request, response, next) => {
   const getTokenFrom = request => {
     const authorization = request.get('authorization')
@@ -42,9 +41,14 @@ const errorHandler = (error, _, response, next) => {
     return response.status(400).send({ error: 'malformatted id' })
   } else if (error.name === 'SequelizeValidationError') {
     return response.status(400).json({ 
-      error: `${error.errors[0].path} is required` 
+      error: error.errors[0].message
     })
-  } else if (error.name === 'JsonWebTokenError') {
+  } else if (error.name === 'SequelizeUniqueConstraintError') {
+    return response.status(400).json({ 
+      error: `${error.original.constraint} already exists`,
+    })
+  } 
+  else if (error.name === 'JsonWebTokenError') {
     return response.status(401).json({
       error: 'invalid token'
     })
@@ -58,3 +62,56 @@ module.exports = {
   errorHandler,
   authentication
 }
+
+/**
+ *  @openapi
+ *  components:
+ *    schemas:
+ *      Error:
+ *        type: object
+ *        properties:
+ *          error:
+ *            type: string
+ */
+
+/**
+ *  @openapi
+ *  components:
+ *    responses:
+ *      Unauthorized:
+ *        description: 'Error: Unauthorized'
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              $ref: '#components/schemas/Error'
+ *            examples:
+ *              Not Authenticated:
+ *                value: { error: not authenticated }
+ *              Invalid Token:
+ *                value: { error: invalid token }
+ */
+
+/**
+ *  @openapi
+ *  components:
+ *    responses:
+ *      BadRequest:
+ *        description: 'Error: Bad Request'
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              $ref: '#components/schemas/Error'
+ *            example: { error: field is required }
+ */
+
+/** 
+ *  @openapi
+ *  components:
+ *    securitySchemes:
+ *      jsonWebToken:
+ *        type: http
+ *        scheme: bearer
+ *        bearerFormat: JWT
+ */

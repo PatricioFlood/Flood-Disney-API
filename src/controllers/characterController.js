@@ -1,5 +1,6 @@
 const { Character, Movie } = require('../models/index')
 const { Sequelize } = require('sequelize');
+const uploadImageController = require('./uploadImageController')
 
 const view = async (req, res) => {
   const id = req.params.id
@@ -33,8 +34,10 @@ const view = async (req, res) => {
   return res.json(characters)
 }
 
+
 const create = async (req, res) => {
   delete req.body.id
+  delete req.body.image
 
   const character = await Character.create(req.body)
 
@@ -44,6 +47,7 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   const id = req.params.id
   delete req.body.id
+  delete req.body.image
 
   const character = await Character.findByPk(id)
   if(character){
@@ -53,15 +57,18 @@ const update = async (req, res) => {
   }
 
   return res.status(404).end()
-}
+} 
 
 const remove = async (req, res) => {
   const id = req.params.id
   const character = await Character.findByPk(id)
   if(character){
+    if(character.image)
+      await uploadImageController.deleteImage(character.image)
+
     await character.destroy()
   }
-  return res.status(404).end()
+  return res.status(204).end()
 }
 
 const getFilters = ({ name, age, weight }) => {
@@ -84,6 +91,6 @@ module.exports = {
   view,
   create,
   update,
-  remove
+  remove,
 }
 

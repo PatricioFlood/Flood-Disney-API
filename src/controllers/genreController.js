@@ -1,4 +1,5 @@
 const { Genre, Movie } = require('../models/index')
+const uploadImageController = require('./uploadImageController')
 
 const view = async (req, res) => {
   const id = req.params.id
@@ -18,6 +19,7 @@ const view = async (req, res) => {
 
 const create = async (req, res) => {
   delete req.body.id
+  delete req.body.image
 
   const genre = await Genre.create(req.body)
 
@@ -27,6 +29,7 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   const id = req.params.id
   delete req.body.id
+  delete req.body.image
 
   const genre = await Genre.findByPk(id)
   if(genre){
@@ -41,9 +44,12 @@ const remove = async (req, res) => {
   const id = req.params.id
   const genre = await Genre.findByPk(id)
   if(genre){
+    if(genre.image)
+      await uploadImageController.deleteImage(genre.image)
+      
     await genre.destroy()
   }
-  return res.status(404).end()
+  return res.status(204).end()
 }
 
 module.exports = {

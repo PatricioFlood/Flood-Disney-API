@@ -1,5 +1,6 @@
 const { Movie, Character } = require('../models/index')
 const { Sequelize } = require('sequelize');
+const uploadImageController = require('./uploadImageController')
 
 const view = async (req, res) => {
   const id = req.params.id
@@ -30,6 +31,7 @@ const view = async (req, res) => {
 
 const create = async (req, res) => {
   delete req.body.id
+  delete req.body.image
 
   const movie = await Movie.create(req.body)
   const characters = req.body.characters
@@ -48,6 +50,7 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   const id = req.params.id
   delete req.body.id
+  delete req.body.image
 
   const movie = await Movie.findByPk(id)
   if(movie){
@@ -63,6 +66,9 @@ const remove = async (req, res) => {
   const id = req.params.id
   const movie = await Movie.findByPk(id)
   if(movie){
+    if(movie.image)
+      await uploadImageController.deleteImage(movie.image)
+
     await movie.destroy()
   }
   return res.status(204).end()
@@ -113,11 +119,12 @@ const getFilters = ({ title, genre }) => {
   return filter
 }
 
+
 module.exports = {
   view,
   create,
   update,
   remove,
   asociateCharacter,
-  desasociateCharacter
+  desasociateCharacter,
 }

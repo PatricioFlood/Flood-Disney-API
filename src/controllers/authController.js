@@ -1,11 +1,12 @@
 const { User } = require('../models/index')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const sendWelcomeMail = require('../utils/sendgrid')
 
 const login = async (req, res) => {
   const { email, password } = req.body
 
-  const user = await User.findOne({ email })
+  const user = await User.findOne({ where: { email } })
   const passwordCorrect = user === null
     ? false
     : await bcrypt.compare(password, user.password)
@@ -17,7 +18,6 @@ const login = async (req, res) => {
   }
 
   const token = jwt.sign(user.id, process.env.SECRET)
-
   res
     .status(200)
     .send({ token, email: user.email, name: user.name })
@@ -43,9 +43,15 @@ const register = async (req, res) => {
   })
 
   const token = jwt.sign(user.id, process.env.SECRET)
-  user.token = token
 
-  res.json(user)
+  const resUser = {
+    email: user.email,
+    name: user.name,
+    token
+  }
+
+  sendWelcomeMail(resUser)
+  res.json(resUser)
 }
 
 module.exports = {
