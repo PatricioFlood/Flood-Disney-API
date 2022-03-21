@@ -7,7 +7,7 @@ const Character = require('../../models/Character')
 
 characterRouter.use(middleware.authentication)
 characterRouter.use(crudRouter(characterController))
-characterRouter.use(uploadImageRouter(Character, 'characters'))
+characterRouter.use(uploadImageRouter(Character))
 
 module.exports = characterRouter
 

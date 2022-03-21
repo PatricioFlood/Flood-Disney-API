@@ -7,7 +7,7 @@ const Genre = require('../../models/Genre')
 
 genreRouter.use(middleware.authentication)
 genreRouter.use(crudRouter(genreController))
-genreRouter.use(uploadImageRouter(Genre, 'genres'))
+genreRouter.use(uploadImageRouter(Genre))
 
 module.exports = genreRouter
 

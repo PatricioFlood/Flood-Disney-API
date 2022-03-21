@@ -1,15 +1,16 @@
 require('dotenv').config()
 
-const PORT = process.env.PORT
-let DATABASE_URL = process.env.DATABASE_URL
-const NODE_ENV = process.env.NODE_ENV
-const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
-const SECRET = process.env.SECRET
-const { SENDGRID_EMAIL_FROM } = process.env
-
-if (process.env.NODE_ENV === 'test') {
-  DATABASE_URL = process.env.TEST_DATABASE_URL
-}
+const DATABASE_URL = (process.env.NODE_ENV === 'test') 
+  ? process.env.TEST_DATABASE_URL 
+  : process.env.DATABASE_URL
+  
+const { 
+  PORT, 
+  NODE_ENV, 
+  SECRET, 
+  SENDGRID_API_KEY, 
+  SENDGRID_EMAIL_FROM 
+} = process.env
 
 module.exports = {
   DATABASE_URL,

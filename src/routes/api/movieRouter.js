@@ -7,7 +7,7 @@ const Movie = require('../../models/Movie')
 
 movieRouter.use(middleware.authentication)
 movieRouter.use(crudRouter(movieController))
-movieRouter.use(uploadImageRouter(Movie, 'movies'))
+movieRouter.use(uploadImageRouter(Movie))
 movieRouter.post('/:id/asociateCharacter', movieController.asociateCharacter)
 movieRouter.delete('/:id/asociateCharacter/:characterId', movieController.desasociateCharacter)
 
