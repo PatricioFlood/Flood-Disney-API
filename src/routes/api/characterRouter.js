@@ -2,7 +2,7 @@ const characterRouter = require('express').Router()
 const crudRouter = require('./crudRouter')
 const uploadImageRouter = require('./uploadImageRouter')
 const characterController = require('../../controllers/characterController')
-const middleware = require('../../utils/middleware')
+const middleware = require('../../middlewares/index')
 const Character = require('../../models/Character')
 
 characterRouter.use(middleware.authentication)

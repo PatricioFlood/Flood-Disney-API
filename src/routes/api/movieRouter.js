@@ -2,7 +2,7 @@ const movieRouter = require('express').Router()
 const crudRouter = require('./crudRouter')
 const uploadImageRouter = require('./uploadImageRouter')
 const movieController = require('../../controllers/movieController')
-const middleware = require('../../utils/middleware')
+const middleware = require('../../middlewares/index')
 const Movie = require('../../models/Movie')
 
 movieRouter.use(middleware.authentication)

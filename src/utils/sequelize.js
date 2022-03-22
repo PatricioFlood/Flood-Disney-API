@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 const config = require('./config')
+const logger = require('./logger')
 
 const dialectOptions = {}
 if(config.NODE_ENV === 'production') 
@@ -11,7 +12,7 @@ const sequelize = new Sequelize(config.DATABASE_URL, {
 })
 
 sequelize.authenticate()
-  .then( _ => console.log('Connection to DB has been established successfully.'))
-  .catch(error => console.error('Unable to connect to the database:', error))
+  .then( _ => logger.info('Connection to DB has been established successfully.'))
+  .catch(error => logger.info('Unable to connect to the database:', error))
 
 module.exports = sequelize

@@ -2,7 +2,7 @@ const genreRouter = require('express').Router()
 const crudRouter = require('./crudRouter')
 const uploadImageRouter = require('./uploadImageRouter')
 const genreController = require('../../controllers/genreController')
-const middleware = require('../../utils/middleware')
+const middleware = require('../../middlewares/index')
 const Genre = require('../../models/Genre')
 
 genreRouter.use(middleware.authentication)

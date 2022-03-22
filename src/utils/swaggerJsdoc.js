@@ -15,7 +15,7 @@ const options = {
   apis: [
     path.join(__dirname, '../models/*.js'),
     path.join(__dirname, '../routes/api/*.js'),
-    path.join(__dirname, './middleware.js')
+    path.join(__dirname, '../middlewares/errorHandler.js')
   ],
 };
 

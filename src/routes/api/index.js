@@ -4,7 +4,7 @@ const authRouter = require('./authRouter')
 const movieRouter = require('./movieRouter')
 const characterRouter = require('./characterRouter')
 const genreRouter = require('./genreRouter')
-const middleware = require('../../utils/middleware')
+const middleware = require('../../middlewares/index')
 const swaggerJsdoc = require('../../utils/swaggerJsdoc')
 
 const options = {
@@ -20,6 +20,5 @@ router.use('/movies', movieRouter)
 router.use('/genres', genreRouter)
 
 router.use(middleware.unknownEndpoint)
-router.use(middleware.errorHandler)
 
 module.exports = router
