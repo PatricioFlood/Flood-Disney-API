@@ -269,12 +269,8 @@ module.exports = movieRouter
  *        schema:
  *          type: integer
  *      responses:
- *        200:
- *          content:
- *            application/json:
- *              schema:
- *                type: object
- *                $ref: '#components/schemas/Movie'
+ *        204:
+ *          description: No Content
  *        401:
  *          $ref: '#components/responses/Unauthorized'
  *        404:

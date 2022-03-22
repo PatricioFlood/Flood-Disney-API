@@ -86,20 +86,32 @@ const remove = async (req, res) => {
 }
 
 const asociateCharacter = async (req, res) => {
-  const id = req.params.id
+  const movieId = req.params.id
   const characterId = req.body.id
 
   if(!characterId)
-    return res.status(400).json({ error: 'fiel "id" is required' })
+    return res.status(400).json({ error: 'field "id" is required' })
 
-  const movie = await Movie
-    .findByPk(id)
+  const movie = await Movie.findByPk(movieId)
+  const character = await Character.findByPk(characterId)
 
-  if(movie && await Character.findByPk(characterId)){
-    const character = await movie.addCharacter(characterId)
-    return res.json(character)
-  }
-  return res.status(404).end()
+  if(!movie && character)
+    return res.status(404).end()
+
+  await movie.addCharacter(characterId)
+  const updatedMovie = await Movie
+    .findByPk(movieId, { 
+      include: [
+        Genre,
+        { 
+          model: Character, 
+          through: { attributes: [] },
+          attributes: ['id', 'name', 'image'],
+        }
+      ], 
+      attributes: {exclude: 'genreId'}
+    })
+  return res.json(updatedMovie)
 }
 
 const desasociateCharacter = async (req, res) => {
