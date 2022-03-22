@@ -35,7 +35,7 @@ module.exports = Genre
  *          image:
  *            type: string
  *            readOnly: true
- *            example: https://flood-disney-api.s3.sa-east-1.amazonaws.com/genres/1b7b3ab7-2238-4a4d-80d5-aea10912a36f.jpeg
+ *            example: https://flood-disney-api.s3.sa-east-1.amazonaws.com/genres/1-Animated.jpeg
  *        required: [id, name]
  * 
  *      Genre:
