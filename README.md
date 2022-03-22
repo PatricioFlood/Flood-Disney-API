@@ -49,5 +49,14 @@ Base Url: https://flood-disney-api.herokuapp.com/
   <li><b>POST</b> <code>/genres/{genreId}/uploadImage</code> -> Upload Image to Genre by ID
 </ul>
 
+## Environment Variables (.env)
 
+<ul>
+  <li><b>PORT</b> (Server Port)
+  <li><b>DATABASE_URL, TEST_DATABASE_URL</b> (PostgreSQL DataBase URLs for production, and testing)
+  <li><b>SECRET</b> (Secret String - JsonWebToken)
+  <li><b>SENDGRID_API_KEY, SENDGRID_EMAIL_FROM</b> (Sendgrid Credentials - Email Service)
+  <li><b>AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY</b> (AWS S3 credentials - Upload Images)
+  <li><b>TEST_USER_EMAIL, TEST_USER_PASSWORD</b> (Test User registered in Test Database)
+<ul>
 
