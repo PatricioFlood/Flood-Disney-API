@@ -66,6 +66,7 @@ module.exports = Movie
  *            genre:
  *              type: object
  *              $ref: '#components/schemas/ShortGenre'
+ *              readOnly: true
  *            characters:
  *              type: array
  *              readOnly: true
