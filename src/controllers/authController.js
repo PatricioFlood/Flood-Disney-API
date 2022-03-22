@@ -51,7 +51,7 @@ const register = async (req, res) => {
   }
 
   sendWelcomeMail(resUser)
-  res.json(resUser)
+  res.status(201).json(resUser)
 }
 
 module.exports = {
