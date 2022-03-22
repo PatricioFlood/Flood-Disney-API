@@ -14,12 +14,12 @@ movieRouter.delete('/:id/asociateCharacter/:characterId', movieController.desaso
 module.exports = movieRouter
 
 /**
- * 
+ *
  *  @openapi
  *  /movies:
  *    get:
  *      tags: [Movie]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Get all Movies or Filter Movies
  *      parameters:
@@ -39,7 +39,7 @@ module.exports = movieRouter
  *        schema:
  *          type: string
  *          enum: [ASC, DESC]
- *          
+ *
  *      responses:
  *        200:
  *          content:
@@ -50,14 +50,14 @@ module.exports = movieRouter
  *                  $ref: '#components/schemas/ShortMovie'
  *        401:
  *          $ref: '#components/responses/Unauthorized'
- */ 
+ */
 
 /**
  *  @openapi
  *  /movies/{movieId}:
  *    get:
  *      tags: [Movie]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Get Movie by ID
  *      parameters:
@@ -77,15 +77,15 @@ module.exports = movieRouter
  *          $ref: '#components/responses/Unauthorized'
  *        404:
  *          description: 'Error: Not Found'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /movies:
  *    post:
  *      tags: [Movie]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Create a new Movie
  *      requestBody:
@@ -108,15 +108,15 @@ module.exports = movieRouter
  *          $ref: '#components/responses/Unauthorized'
  *        404:
  *          description: 'Error: Not Found'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /movies/{movieId}:
  *    put:
  *      tags: [Movie]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Update Movie by ID
  *      parameters:
@@ -145,15 +145,15 @@ module.exports = movieRouter
  *          $ref: '#components/responses/Unauthorized'
  *        404:
  *          description: 'Error: Not Found'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /movies/{movieId}:
  *    delete:
  *      tags: [Movie]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Delete Movie by ID
  *      parameters:
@@ -167,15 +167,15 @@ module.exports = movieRouter
  *          description: No Content
  *        401:
  *          $ref: '#components/responses/Unauthorized'
- */    
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /movies/{movieId}/uploadImage:
  *    post:
  *      tags: [Movie]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Upload Image to Movie by ID
  *      parameters:
@@ -205,15 +205,15 @@ module.exports = movieRouter
  *          $ref: '#components/responses/BadRequest'
  *        401:
  *          $ref: '#components/responses/Unauthorized'
- */    
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /movies/{movieId}/asociateCharacter:
  *    post:
  *      tags: [Movie]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Asociate Character to Movie by ID
  *      parameters:
@@ -249,12 +249,12 @@ module.exports = movieRouter
  */
 
 /**
- * 
+ *
  *  @openapi
  *  /movies/{movieId}/asociateCharacter/{characterId}:
  *    delete:
  *      tags: [Movie]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Desasociate Character to Movie by Movie ID and Character ID
  *      parameters:

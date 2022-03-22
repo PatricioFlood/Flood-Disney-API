@@ -12,12 +12,12 @@ characterRouter.use(uploadImageRouter(Character))
 module.exports = characterRouter
 
 /**
- * 
+ *
  *  @openapi
  *  /characters:
  *    get:
  *      tags: [Character]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Get all Characters or Filter Characters
  *      parameters:
@@ -46,14 +46,14 @@ module.exports = characterRouter
  *                  $ref: '#components/schemas/ShortCharacter'
  *        401:
  *          $ref: '#components/responses/Unauthorized'
- */ 
+ */
 
 /**
  *  @openapi
  *  /characters/{characterId}:
  *    get:
  *      tags: [Character]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Get Character by ID
  *      parameters:
@@ -73,15 +73,15 @@ module.exports = characterRouter
  *          $ref: '#components/responses/Unauthorized'
  *        404:
  *          description: 'Error: Not Found'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /characters:
  *    post:
  *      tags: [Character]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Create a new Character
  *      requestBody:
@@ -104,15 +104,15 @@ module.exports = characterRouter
  *          $ref: '#components/responses/Unauthorized'
  *        404:
  *          description: 'Error: Not Found'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /characters/{characterId}:
  *    put:
  *      tags: [Character]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Update Character by ID
  *      parameters:
@@ -141,15 +141,15 @@ module.exports = characterRouter
  *          $ref: '#components/responses/Unauthorized'
  *        404:
  *          description: 'Error: Not Found'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /characters/{characterId}:
  *    delete:
  *      tags: [Character]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Delete Character by ID
  *      parameters:
@@ -163,15 +163,15 @@ module.exports = characterRouter
  *          description: No Content
  *        401:
  *          $ref: '#components/responses/Unauthorized'
- */    
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /characters/{characterId}/uploadImage:
  *    post:
  *      tags: [Character]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Upload Image to Character by ID
  *      parameters:
@@ -201,4 +201,4 @@ module.exports = characterRouter
  *          $ref: '#components/responses/BadRequest'
  *        401:
  *          $ref: '#components/responses/Unauthorized'
- */    
+ */

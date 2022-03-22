@@ -7,6 +7,6 @@ const crudRouter = (controller) => {
   router.delete('/:id', controller.remove)
 
   return router
-} 
+}
 
 module.exports = crudRouter

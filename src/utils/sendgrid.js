@@ -3,11 +3,11 @@ const config = require('../utils/config')
 
 sgMail.setApiKey(config.SENDGRID_API_KEY)
 
-const sendWelcomeMail = async ({email, name}) => {
+const sendWelcomeMail = async ({ email, name }) => {
   const body = `Hi ${name}, welcome to Flood Disney API`
   const msg = {
-    to: email, 
-    from: config.SENDGRID_EMAIL_FROM, 
+    to: email,
+    from: config.SENDGRID_EMAIL_FROM,
     subject: 'Welcome to Flood Disney API',
     text: body,
     html: `<strong>${body}</strong>`,
@@ -15,7 +15,7 @@ const sendWelcomeMail = async ({email, name}) => {
   if(process.env.NODE_ENV === 'production')
     await sgMail.send(msg)
   else
-    console.log({email: msg})
+    console.log({ email: msg })
 }
 
 module.exports = sendWelcomeMail

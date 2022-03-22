@@ -6,16 +6,16 @@ const view = async (req, res) => {
 
   if(id){
     const genre = await Genre
-      .findByPk(id, { 
-        include: { 
+      .findByPk(id, {
+        include: {
           model: Movie,
           attributes: ['id', 'title', 'image', 'creationDate'],
-        } 
+        }
       })
     if(genre)
       return res.json(genre)
     return res.status(404).end()
-  } 
+  }
 
   const genres = await Genre.findAll()
 
@@ -51,7 +51,7 @@ const remove = async (req, res) => {
   if(genre){
     if(genre.image)
       await uploadImageController.deleteImage(genre.image)
-      
+
     await genre.destroy()
   }
   return res.status(204).end()

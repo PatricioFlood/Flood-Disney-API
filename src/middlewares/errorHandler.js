@@ -2,39 +2,45 @@ const logger = require('../utils/logger')
 
 const errorHandler = (error, _request, response, _next) => {
   switch(error.name){
-    case 'SequelizeValidationError':
-      const errorMessage = error.message.split(': ')
+  case 'SequelizeValidationError': {
+    const errorMessage = error.message.split(': ')
 
-      if(errorMessage[0] && errorMessage[0] == 'notNull Violation')
-        error = `${error.errors[0].path} is required`
-      else
-        error = errorMessage[1] || error.message
+    if(errorMessage[0] && errorMessage[0] === 'notNull Violation')
+      error = `${error.errors[0].path} is required`
+    else
+      error = errorMessage[1] || error.message
 
-      return response.status(400).json({ error })
+    return response.status(400).json({ error })
+  }
 
-    case 'SequelizeUniqueConstraintError':
-      return response.status(400).json({ 
-        error: `${error.original.constraint} already exists`,
-      })
-    case 'SequelizeForeignKeyConstraintError':
-      return response.status(400).json({ 
-        error: `${error.original.constraint} ID not exists`,
-      })
-    case 'SequelizeDatabaseError':
-      return response.status(400).json({ 
-        error: 'malformed field'
-      })
+  case 'SequelizeUniqueConstraintError':
+    return response.status(400).json({
+      error: `${error.original.constraint} already exists`,
+    })
 
-    case 'JsonWebTokenError':
-      return response.status(401).json({
-        error: 'invalid token'
-      })
-    case 'SyntaxError':
-      if(error.status === 400 && 'body' in error)
-        return response.status(400).json({ error: 'malformed body' })
-    default:
-      logger.error(error)
-      return response.sendStatus(500); 
+  case 'SequelizeForeignKeyConstraintError':
+    return response.status(400).json({
+      error: `${error.original.constraint} ID not exists`,
+    })
+
+  case 'SequelizeDatabaseError':
+    return response.status(400).json({
+      error: 'malformed field'
+    })
+
+  case 'JsonWebTokenError':
+    return response.status(401).json({
+      error: 'invalid token'
+    })
+
+  case 'SyntaxError':
+    if(error.status === 400 && 'body' in error)
+      return response.status(400).json({ error: 'malformed body' })
+    /* falls through */
+
+  default:
+    logger.error(error)
+    return response.sendStatus(500)
   }
 }
 
@@ -80,17 +86,17 @@ module.exports = errorHandler
  *            schema:
  *              type: object
  *              $ref: '#components/schemas/Error'
- *            examples: 
+ *            examples:
  *              Missing Required Field:
  *                value: { error: field is required }
  *              Malformed Field:
  *                value: { error: malformed field }
  *              Malformed Body:
  *                value: { error: malformed body }
- * 
+ *
  */
 
-/** 
+/**
  *  @openapi
  *  components:
  *    securitySchemes:

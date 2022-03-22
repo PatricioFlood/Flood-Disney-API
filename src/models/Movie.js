@@ -36,7 +36,7 @@ module.exports = Movie
  *            type: string
  *            readOnly: true
  *            example: https://flood-disney-api.s3.sa-east-1.amazonaws.com/movies/1-Frozen.jpeg
- *          title: 
+ *          title:
  *            type: string
  *            example: Frozen
  *          creationDate:
@@ -52,7 +52,7 @@ module.exports = Movie
  *    schemas:
  *      Movie:
  *        allOf:
- *        - $ref: '#components/schemas/ShortMovie' 
+ *        - $ref: '#components/schemas/ShortMovie'
  *        - type: object
  *          properties:
  *            calification:

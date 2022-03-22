@@ -1,28 +1,28 @@
 const { Movie, Character, Genre } = require('../models/index')
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require('sequelize')
 const uploadImageController = require('./uploadImageController')
 
 const view = async (req, res) => {
   const id = req.params.id
   if(id){
     const movie = await Movie
-    .findByPk(id, { 
-      include: [
-        Genre,
-        { 
-          model: Character, 
-          through: { attributes: [] },
-          attributes: ['id', 'name', 'image'],
-        }
-      ], 
-      attributes: {exclude: 'genreId'}
-    })
+      .findByPk(id, {
+        include: [
+          Genre,
+          {
+            model: Character,
+            through: { attributes: [] },
+            attributes: ['id', 'name', 'image'],
+          }
+        ],
+        attributes: { exclude: 'genreId' }
+      })
 
     if(movie)
       return res.json(movie)
 
     return res.status(404).end()
-  } 
+  }
 
   const filter = getFilters(req.query)
   const order = req.query.order
@@ -47,14 +47,14 @@ const create = async (req, res) => {
   const movie = await Movie.create(req.body)
   const characters = req.body.characters
 
-  if(characters) 
+  if(characters)
     await Promise.all(characters.map(async character => {
       if (await Character.findByPk(character.id)){
         await movie.addCharacter(character.id)
       }
     }))
 
-  const createdMovie = await Movie.findByPk(movie.id, { include: Character } ) 
+  const createdMovie = await Movie.findByPk(movie.id, { include: Character } )
   return res.status(201).json(createdMovie)
 }
 
@@ -100,16 +100,16 @@ const asociateCharacter = async (req, res) => {
 
   await movie.addCharacter(characterId)
   const updatedMovie = await Movie
-    .findByPk(movieId, { 
+    .findByPk(movieId, {
       include: [
         Genre,
-        { 
-          model: Character, 
+        {
+          model: Character,
           through: { attributes: [] },
           attributes: ['id', 'name', 'image'],
         }
-      ], 
-      attributes: {exclude: 'genreId'}
+      ],
+      attributes: { exclude: 'genreId' }
     })
   return res.json(updatedMovie)
 }
@@ -131,12 +131,12 @@ const getFilters = ({ title, genre }) => {
   const filter = {}
 
   title
-  ? filter.title = Sequelize.where(
-    Sequelize.fn('LOWER', Sequelize.col('title')), 
-    'LIKE', 
-    `%${title.toLowerCase()}%`
-  )
-  : null
+    ? filter.title = Sequelize.where(
+      Sequelize.fn('LOWER', Sequelize.col('title')),
+      'LIKE',
+      `%${title.toLowerCase()}%`
+    )
+    : null
   genre ? filter.genreId = genre : null
 
   return filter

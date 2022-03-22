@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');;
+const { DataTypes } = require('sequelize')
 const sequelize =  require('../utils/sequelize')
 
 const User = sequelize.define('users', {
@@ -41,11 +41,11 @@ module.exports = User
  *          email:
  *            type: string
  *            example: name@mail.com
- *          password: 
+ *          password:
  *            type: string
  *            example: 123456
  *            writeOnly: true
- *          token: 
+ *          token:
  *            type: string
  *            example: eyJhbGciOiJIUzI1NiJ8.MQ.28fPLZWzdebJstob56FpbOi9zbxjNaGLGzUzJewlsOE
  *            readOnly: true
@@ -61,7 +61,7 @@ module.exports = User
  *          - $ref: '#components/schemas/LoginUser'
  *          - type: object
  *            properties:
- *              name: 
+ *              name:
  *                type: string
  *                example: Patricio Flood
  *            required: [name]

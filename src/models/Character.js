@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');;
+const { DataTypes } = require('sequelize')
 const sequelize =  require('../utils/sequelize')
 
 const Character = sequelize.define('characters', {
@@ -36,7 +36,7 @@ module.exports = Character
  *            type: string
  *            readOnly: true
  *            example: https://flood-disney-api.s3.sa-east-1.amazonaws.com/characters/1-Pluto.jpeg
- *          name: 
+ *          name:
  *            type: string
  *            example: Pluto
  *        required: [id, name]
@@ -57,7 +57,7 @@ module.exports = Character
  *            weight:
  *              type: integer
  *              example: 40
- *            history: 
+ *            history:
  *              type: string
  *              example: He is a yellow-orange color, medium-sized, short-haired dog with black ears. Unlike most Disney characters, Pluto is not anthropomorphic beyond some characteristics such as facial expression. He is Mickey's pet.
  *            movies:

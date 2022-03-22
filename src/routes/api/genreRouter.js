@@ -12,12 +12,12 @@ genreRouter.use(uploadImageRouter(Genre))
 module.exports = genreRouter
 
 /**
- * 
+ *
  *  @openapi
  *  /genres:
  *    get:
  *      tags: [Genre]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Get all Genres
  *      responses:
@@ -30,14 +30,14 @@ module.exports = genreRouter
  *                  $ref: '#components/schemas/ShortGenre'
  *        401:
  *          $ref: '#components/responses/Unauthorized'
- */ 
+ */
 
 /**
  *  @openapi
  *  /genres/{genreId}:
  *    get:
  *      tags: [Genre]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Get Genre by ID
  *      parameters:
@@ -57,15 +57,15 @@ module.exports = genreRouter
  *          $ref: '#components/responses/Unauthorized'
  *        404:
  *          description: 'Error: Not Found'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /genres:
  *    post:
  *      tags: [Genre]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Create a new Genre
  *      requestBody:
@@ -88,15 +88,15 @@ module.exports = genreRouter
  *          $ref: '#components/responses/Unauthorized'
  *        404:
  *          description: 'Error: Not Found'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /genres/{genreId}:
  *    put:
  *      tags: [Genre]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Update Genre by ID
  *      parameters:
@@ -125,15 +125,15 @@ module.exports = genreRouter
  *          $ref: '#components/responses/Unauthorized'
  *        404:
  *          description: 'Error: Not Found'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /genres/{genreId}:
  *    delete:
  *      tags: [Genre]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Delete Genre by ID
  *      parameters:
@@ -147,15 +147,15 @@ module.exports = genreRouter
  *          description: No Content
  *        401:
  *          $ref: '#components/responses/Unauthorized'
- */    
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /genres/{genreId}/uploadImage:
  *    post:
  *      tags: [Genre]
- *      security: 
+ *      security:
  *      - jsonWebToken: []
  *      summary: Upload Image to Genre by ID
  *      parameters:
@@ -185,4 +185,4 @@ module.exports = genreRouter
  *          $ref: '#components/responses/BadRequest'
  *        401:
  *          $ref: '#components/responses/Unauthorized'
- */    
+ */

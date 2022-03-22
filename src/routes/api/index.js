@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const swaggerUi = require('swagger-ui-express');
+const swaggerUi = require('swagger-ui-express')
 const authRouter = require('./authRouter')
 const movieRouter = require('./movieRouter')
 const characterRouter = require('./characterRouter')
@@ -9,10 +9,10 @@ const swaggerJsdoc = require('../../utils/swaggerJsdoc')
 
 const options = {
   customCss: '.swagger-ui .topbar { display: none }',
-};
+}
 
-router.use('/api-docs', swaggerUi.serve);
-router.get('/api-docs', swaggerUi.setup(swaggerJsdoc, options));
+router.use('/api-docs', swaggerUi.serve)
+router.get('/api-docs', swaggerUi.setup(swaggerJsdoc, options))
 
 router.use('/auth', authRouter)
 router.use('/characters', characterRouter)

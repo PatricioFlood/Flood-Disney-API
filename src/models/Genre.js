@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');;
+const { DataTypes } = require('sequelize')
 const sequelize =  require('../utils/sequelize')
 
 const Genre = sequelize.define('genres', {
@@ -29,7 +29,7 @@ module.exports = Genre
  *            type: integer
  *            readOnly: true
  *            example: 1
- *          name: 
+ *          name:
  *            type: string
  *            example: Animated
  *          image:
@@ -37,12 +37,12 @@ module.exports = Genre
  *            readOnly: true
  *            example: https://flood-disney-api.s3.sa-east-1.amazonaws.com/genres/1-Animated.jpeg
  *        required: [id, name]
- * 
+ *
  *      Genre:
  *        allOf:
  *        - $ref: '#components/schemas/ShortGenre'
  *        - type: object
- *          properties: 
+ *          properties:
  *            movies:
  *              type: array
  *              readOnly: true

@@ -7,7 +7,7 @@ authRouter.post('/register', authController.register)
 module.exports = authRouter
 
 /**
- * 
+ *
  *  @openapi
  *  /auth/register:
  *    post:
@@ -29,10 +29,10 @@ module.exports = authRouter
  *                $ref: '#components/schemas/User'
  *        400:
  *          $ref: '#components/responses/BadRequest'
- */     
+ */
 
 /**
- * 
+ *
  *  @openapi
  *  /auth/login:
  *    post:
@@ -53,4 +53,4 @@ module.exports = authRouter
  *                $ref: '#components/schemas/User'
  *        400:
  *          $ref: '#components/responses/BadRequest'
- */     
+ */

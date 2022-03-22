@@ -17,7 +17,7 @@ const uploadImage = (Model) => async (req, res) => {
 
   if (!['png','jpg', 'jpeg'].includes(fileExtension))
     return res.json({ error: 'Please upload a valid image file (png, jpg or jpeg)' })
-    
+
   const name = getSlug(model.name || model.title, { maintainCase: true })
   const params = {
     Bucket: s3.bucket,
@@ -28,15 +28,15 @@ const uploadImage = (Model) => async (req, res) => {
 
   const upload = await s3.uploadFile(params)
   const image = upload.Location
-  
+
   const modelImage = model.image
 
-  model.set({image})
+  model.set({ image })
   await model.save()
 
   if(modelImage)
-      await deleteImage(modelImage)
-    
+    await deleteImage(modelImage)
+
   return res.json(model)
 }
 

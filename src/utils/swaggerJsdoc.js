@@ -17,6 +17,6 @@ const options = {
     path.join(__dirname, '../routes/api/*.js'),
     path.join(__dirname, '../middlewares/errorHandler.js')
   ],
-};
+}
 
-module.exports = swaggerJsdoc(options);
+module.exports = swaggerJsdoc(options)

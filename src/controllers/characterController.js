@@ -1,22 +1,22 @@
 const { Character, Movie } = require('../models/index')
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require('sequelize')
 const uploadImageController = require('./uploadImageController')
 
 const view = async (req, res) => {
   const id = req.params.id
   if(id){
     const character = await Character
-      .findByPk(id, { 
-        include: { 
-          model: Movie, 
+      .findByPk(id, {
+        include: {
+          model: Movie,
           through: { attributes: [] },
           attributes: ['id', 'title', 'image', 'creationDate'],
-        } 
+        }
       })
     if(character)
       return res.json(character)
     return res.status(404).end()
-  } 
+  }
 
   const filter = getFilters(req.query)
 
@@ -31,11 +31,11 @@ const view = async (req, res) => {
     characters = characters.filter(
       char => char.movies.find(
         movie => movie.id === Number(req.query.movies)
-      ) 
+      )
     )
   }
 
-  characters = characters.map(({id, image, name}) => ({id, image, name}))
+  characters = characters.map(({ id, image, name }) => ({ id, image, name }))
 
   return res.json(characters)
 }
@@ -63,7 +63,7 @@ const update = async (req, res) => {
   }
 
   return res.status(404).end()
-} 
+}
 
 const remove = async (req, res) => {
   const id = req.params.id
@@ -80,10 +80,10 @@ const remove = async (req, res) => {
 const getFilters = ({ name, age, weight }) => {
   const filter = {}
 
-  name 
+  name
     ? filter.name = Sequelize.where(
-      Sequelize.fn('LOWER', Sequelize.col('name')), 
-      'LIKE', 
+      Sequelize.fn('LOWER', Sequelize.col('name')),
+      'LIKE',
       `%${name.toLowerCase()}%`
     )
     : null
