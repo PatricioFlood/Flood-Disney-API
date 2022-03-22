@@ -16,7 +16,10 @@ const errorHandler = (error, _request, response, _next) => {
       return response.status(400).json({ 
         error: `${error.original.constraint} already exists`,
       })
-
+    case 'SequelizeForeignKeyConstraintError':
+      return response.status(400).json({ 
+        error: `${error.original.constraint} ID not exists`,
+      })
     case 'SequelizeDatabaseError':
       return response.status(400).json({ 
         error: 'malformed field'

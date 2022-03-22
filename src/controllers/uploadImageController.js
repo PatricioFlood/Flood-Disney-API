@@ -17,7 +17,7 @@ const uploadImage = (Model) => async (req, res) => {
   if (!['png','jpg', 'jpeg'].includes(fileExtension))
     return res.json({ error: 'Please upload a valid image file (png, jpg or jpeg)' })
     
-  const name = model.name || model.title
+  const name = (model.name || model.title).replace(' ', '-')
   const params = {
     Bucket: s3.bucket,
     Key: `${Model.name}/${model.id}-${name}.${fileExtension}`,
