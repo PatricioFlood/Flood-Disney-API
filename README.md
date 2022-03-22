@@ -52,11 +52,11 @@ Base Url: https://flood-disney-api.herokuapp.com/
 ## Environment Variables (.env)
 
 <ul>
-  <li><b>PORT</b> (Server Port)
-  <li><b>DATABASE_URL, TEST_DATABASE_URL</b> (PostgreSQL DataBase URLs for production, and testing)
-  <li><b>SECRET</b> (Secret String - JsonWebToken)
-  <li><b>SENDGRID_API_KEY, SENDGRID_EMAIL_FROM</b> (Sendgrid Credentials - Email Service)
-  <li><b>AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY</b> (AWS S3 credentials - Upload Images)
-  <li><b>TEST_USER_EMAIL, TEST_USER_PASSWORD</b> (Test User registered in Test Database)
+  <li><code>PORT</code> (Server Port)
+  <li><code>DATABASE_URL, TEST_DATABASE_URL</code> (PostgreSQL DataBase URLs for production, and testing)
+  <li><code>SECRET</code> (Secret String - JsonWebToken)
+  <li><code>SENDGRID_API_KEY, SENDGRID_EMAIL_FROM</code> (Sendgrid Credentials - Email Service)
+  <li><code>AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY</code> (AWS S3 credentials - Upload Images)
+  <li><code>TEST_USER_EMAIL, TEST_USER_PASSWORD</code> (Test User registered in Test Database)
 <ul>
 
