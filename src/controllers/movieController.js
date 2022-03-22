@@ -34,7 +34,7 @@ const view = async (req, res) => {
     .findAll({
       attributes: ['id', 'image', 'title', 'creationDate'],
       where: filter,
-      order: orderType?[['title', orderType]]:[]
+      order: orderType?[['creationDate', orderType]]:[]
     })
 
   return res.json(movies)
