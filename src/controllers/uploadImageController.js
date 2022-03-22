@@ -1,5 +1,6 @@
 const s3 = require('../utils/s3')
 const logger = require('../utils/logger')
+const getSlug = require('speakingurl')
 
 const uploadImage = (Model) => async (req, res) => {
   const id = req.params.id
@@ -17,7 +18,7 @@ const uploadImage = (Model) => async (req, res) => {
   if (!['png','jpg', 'jpeg'].includes(fileExtension))
     return res.json({ error: 'Please upload a valid image file (png, jpg or jpeg)' })
     
-  const name = (model.name || model.title).replace(' ', '-')
+  const name = getSlug(model.name || model.title, { maintainCase: true })
   const params = {
     Bucket: s3.bucket,
     Key: `${Model.name}/${model.id}-${name}.${fileExtension}`,
