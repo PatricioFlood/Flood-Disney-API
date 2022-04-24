@@ -2,11 +2,11 @@
 API to explore the world of Disney, which allows knowing and modifying the characters that compose it and understand in which films they participated.
 Alkemy's Backend Challenge by Patricio Tomás Flood.
 
-Full Api Docs: https://flood-disney-api.herokuapp.com/api-docs
+Full Api Docs: https://disney-api.flood.ar/api-docs
 
 ## Endpoints
 
-Base Url: https://flood-disney-api.herokuapp.com/
+Base Url: https://disney-api.flood.ar/
 ### Open endpoints
 
 **Auth**
